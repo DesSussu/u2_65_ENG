@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>U2_65</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>Concentration of a solution</header>
+
+      <main>
+        <div class="illocompleta">
+          <div class="gradilla">
+            <div><img src="./img/8Gradilla.svg" alt="" /></div>
+          </div>
+          <div class="barra"><img src="./img/11Barra.svg" alt="" /></div>
+          <div class="tubos">
+            <div id="tubo1" class="tubo">
+              <img src="./img/1TuboEnsayo.svg" alt="" />
+            </div>
+            <div id="tubo2" class="tubo">
+              <img src="./img/2TuboEnsayo.svg" alt="" />
+            </div>
+            <div id="tubo3" class="tubo">
+              <img src="./img/3TuboEnsayo.svg" alt="" />
+            </div>
+            <div id="tubo4" class="tubo">
+              <img src="./img/4TuboEnsayo.svg" alt="" />
+            </div>
+            <div id="tubo5" class="tubo">
+              <img src="./img/5Tuboensayo.svg" alt="" />
+            </div>
+            <div id="tubo6" class="tubo">
+              <img src="./img/6Tuboensayo.svg" alt="" />
+            </div>
+          </div>
+        </div>
+        <div id="cursor" class="cursor">
+          <img id="cursor_img" src="./img/9Cursor2.svg" alt="" />
+        </div>
+        <div class="añadido">
+          <div class="cucharas">
+            <img
+              class="cuchara"
+              id="cuchara1"
+              src="./img/7Cucharilla.svg"
+              alt=""
+            />
+            <img
+              class="cuchara"
+              id="cuchara2"
+              src="./img/7Cucharilla2.svg"
+              alt=""
+            />
+            <img
+              class="cuchara"
+              id="cuchara3"
+              src="./img/7Cucharilla3.svg"
+              alt=""
+            />
+            <img
+              class="cuchara"
+              id="cuchara4"
+              src="./img/7Cucharilla4.svg"
+              alt=""
+            />
+            <img
+              class="cuchara"
+              id="cuchara5"
+              src="./img/7Cucharilla5.svg"
+              alt=""
+            />
+            <img
+              class="cuchara"
+              id="cuchara6"
+              src="./img/7Cucharilla6.svg"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="infotext">
+          <div class="tarjeta_texto" id="tarjeta">DILUÏDA</div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
+
+<script>
+  let srcActive = "./img/9Cursor.svg";
+  let srcInactive = "./img/9Cursor2.svg";
+
+  let pos_fija = 99; //pixeles de posicion
+  $(document).ready(function () {
+    $("body").on("mouseenter", ".tubo", function () {
+      var id = this.id;
+
+      selectCuchara(id);
+      $("#tarjeta").text(selectText(id));
+
+      var pos = $("#" + id).position();
+      var width_rel = $("#tarjeta").width() / 2;
+      var pos_final = pos_fija + pos.left - width_rel;
+
+      $("#cursor_img").attr("src", srcActive);
+      $("#cursor").animate(
+        { left: pos.left + pos_fija + "px" },
+        50,
+        function () {}
+      );
+      $("#tarjeta").animate({ left: pos_final + "px" }, 50, function () {});
+      $("#tarjeta").css("display", "inline");
+    });
+
+    $("body").on("mouseleave", ".tubo", function () {
+      $("#cursor_img").attr("src", srcInactive);
+      $("#cucharas").css("visibility", "hidden");
+      clearCucharas();
+      $("#tarjeta").css("display", "none");
+    });
+  });
+
+  function selectCuchara(valor) {
+    var id_cuchara = "cuchara" + valor.substring(4, 5);
+    $("#" + id_cuchara).css("visibility", "visible");
+  }
+
+  function selectText(valor) {
+    var id_texto = valor.substring(4, 5);
+    var texto;
+    if (id_texto > 5) {
+      texto = "OVERSATURATED";
+    } else if (id_texto > 4) {
+      texto = "SATURATED";
+    } else if (id_texto > 2) {
+      texto = "CONCENTRATED";
+    } else {
+      texto = "DILUTE";
+    }
+    return texto;
+  }
+
+  function clearCucharas() {
+    for (i = 0; i < 7; i++) {
+      $("#cuchara" + i).css("visibility", "hidden");
+    }
+  }
+</script>

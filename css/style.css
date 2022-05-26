@@ -1,0 +1,80 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Nunito Sans", sans-serif;
+}
+header {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 40px;
+  font-weight: bold;
+}
+.container {
+  overflow: hidden;
+  width: 528px;
+  height: 545px;
+  position: absolute;
+}
+.illocompleta {
+  position: relative;
+  top: 120px;
+  width: 400px;
+}
+.gradilla {
+  width: 468px;
+  margin-left: 30px;
+}
+.barra {
+  position: absolute;
+  top: 40px;
+  z-index: 11;
+  left: 71px;
+}
+.barra img {
+  width: 386px;
+}
+.tubos {
+  display: flex;
+  position: relative;
+  width: 349px;
+  gap: 24px;
+  bottom: 230px;
+  left: 90px;
+}
+.tubos img {
+  cursor: pointer;
+  width: 37px;
+}
+.cursor {
+  position: absolute;
+  width: 4%;
+  bottom: 143px;
+  left: 99px;
+}
+
+.cucharas {
+  position: relative;
+  display: flex;
+  gap: 24px;
+  bottom: 350px;
+  left: 99px;
+}
+
+.cucharas img {
+  width: 36px;
+}
+
+.cucharas {
+  visibility: hidden;
+}
+
+.tarjeta_texto {
+  left: 99px;
+  position: absolute;
+  background-color: #fed895;
+  display: inline;
+  text-align: center;
+  padding: 10px;
+  bottom: 90px;
+  display: none;
+}
